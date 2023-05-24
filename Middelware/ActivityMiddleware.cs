@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Nugget2.Middelware
@@ -19,6 +20,10 @@ namespace Nugget2.Middelware
         public Task Invoke(HttpContext httpContext)
         {
             logger.LogDebug("Middleware invoked.");
+
+            string requestId = httpContext.Request.Headers["X-Request-ID"].FirstOrDefault();
+
+            Activity.Current?.SetTag("SRO-Request-ID", requestId);
 
             return _next(httpContext);
         }

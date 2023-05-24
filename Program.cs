@@ -20,6 +20,12 @@ namespace Nugget2
 
             builder.Services.AddScoped<IEventService, EventService>();
 
+            builder.Logging.Configure(opt =>
+            {
+                opt.ActivityTrackingOptions =
+                    ActivityTrackingOptions.Tags;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
