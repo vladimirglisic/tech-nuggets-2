@@ -1,4 +1,7 @@
 
+using Nugget2.Contract;
+using Nugget2.Service;
+
 namespace Nugget2
 {
     public class Program
@@ -13,6 +16,8 @@ namespace Nugget2
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<IEventService, EventService>();
 
             var app = builder.Build();
 

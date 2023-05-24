@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Nugget2.Contract;
 using Nugget2.Model;
 using Nugget2.Service;
 
@@ -10,11 +11,17 @@ namespace Nugget2.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
+        private readonly IEventService service;
+
+        public EventsController(IEventService service)
+        {
+            this.service = service;
+        }
+
         // GET: api/<EventsController>
         [HttpGet]
         public IEnumerable<Event> Get()
         {
-            var service = new EventService();
             return service.Get();
         }
     }
