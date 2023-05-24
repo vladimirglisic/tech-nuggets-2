@@ -1,5 +1,6 @@
 
 using Nugget2.Contract;
+using Nugget2.Middelware;
 using Nugget2.Service;
 
 namespace Nugget2
@@ -32,6 +33,7 @@ namespace Nugget2
 
             app.UseAuthorization();
 
+            app.UseActivityMiddleware();
 
             app.MapControllers();
 
